@@ -1,4 +1,4 @@
-import * as service from '../services/petsService.js';
+import * as service from '../services/organisationsService.js';
 
 export function getOrganisations(req, res) {
     service.getOrganisations(req, res);

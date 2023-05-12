@@ -6,7 +6,7 @@ info:
 
 paths:
   /api/v1/organisations:
-    x-router-controller: petsController
+    x-router-controller: organisationsController
     get:
       description: Returns all organisations
       operationId: getOrganisations
@@ -27,7 +27,7 @@ paths:
                 $ref: '#/components/schemas/error'
 
   /api/v1/organisations/{registry_number}:
-    x-router-controller: petsController
+    x-router-controller: organisationsController
     get:
       description: Returns a single organisation by its registry_number
       operationId: findByregistry_number
