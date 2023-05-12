@@ -1,0 +1,83 @@
+openapi: 3.0.3
+info:
+  version: 1.0.0
+  title: professioanlOrg
+  description: ejemplo oas 
+
+paths:
+  /api/v1/organisations:
+    x-router-controller: petsController
+    get:
+      description: Returns all organisations
+      operationId: getOrganisations
+      responses:
+        200:
+          description: Organisation list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/organisation'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+
+  /api/v1/organisations/{registry_number}:
+    x-router-controller: petsController
+    get:
+      description: Returns a single organisation by its registry_number
+      operationId: findByregistry_number
+      parameters:
+        - required: true
+          name: registry_number
+          description: registry_number of the organisation to fetch
+          in: path
+          schema:
+            type: number
+      responses:
+        200:
+          description: Organisation found by registry_number
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/organisation'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+
+components:
+  schemas:
+    organisation:
+        type: object
+        required:
+          - registry_number
+        properties:
+          date:
+            type: number
+          registry_number:
+            type: number
+          professional_org:
+            type: string
+          location:
+            type: string
+          phone_number:
+            type: string
+          postal_code:
+            type: number
+          adress:
+            type: string
+    error:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+      additionalProperties: true
